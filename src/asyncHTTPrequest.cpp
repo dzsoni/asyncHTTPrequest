@@ -1,4 +1,5 @@
 #include "asyncHTTPrequest.h"
+#include "strings.h"
 
 //**************************************************************************************************************
 asyncHTTPrequest::asyncHTTPrequest()
