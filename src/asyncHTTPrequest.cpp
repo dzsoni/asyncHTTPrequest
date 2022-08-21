@@ -1,5 +1,23 @@
 #include "asyncHTTPrequest.h"
 
+int strcasecmp(const char *s1, const char *s2)
+{
+	const unsigned char *us1 = (const unsigned char *)s1;
+	const unsigned char *us2 = (const unsigned char *)s2;
+	while (lowerchar(us1) == lowerchar(us2++))
+		if (*us1++ == '\0')
+			return (0);
+	return (lowerchar(us1) - lowerchar(--us2));
+}
+char lowerchar(const unsigned char* c)
+{
+    if(*c>='A' && *c<='Z') 
+    {
+        return *c+('a'-'A');//*c+32
+    }
+    return *c;
+}
+
 //**************************************************************************************************************
 asyncHTTPrequest::asyncHTTPrequest()
     : _readyState(readyStateUnsent)
