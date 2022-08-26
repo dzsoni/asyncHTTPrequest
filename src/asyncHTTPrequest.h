@@ -17,6 +17,8 @@
 ***********************************************************************************/
 #include <Arduino.h>
 
+#define DONT_COMPILE_DEBUG_LINES
+
 #ifndef DEBUG_IOTA_PORT
 #define DEBUG_IOTA_PORT Serial
 #endif
@@ -42,9 +44,13 @@
 #include <pgmspace.h>
 #include <xbuf.h>
 
+#ifdef DONT_COMPILE_DEBUG_LINES
+#define DEBUG_HTTP(format,...)
+#else 
 #define DEBUG_HTTP(format,...)  if(_debug){\
                                     DEBUG_IOTA_PORT.printf("Debug(%3ld): ", millis()-_requestStartTime);\
                                     DEBUG_IOTA_PORT.printf_P(PSTR(format),##__VA_ARGS__);}
+#endif
 
 #define DEFAULT_RX_TIMEOUT 3                    // Seconds for timeout
 

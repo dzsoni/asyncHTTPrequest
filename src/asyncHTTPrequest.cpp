@@ -50,7 +50,14 @@ asyncHTTPrequest::~asyncHTTPrequest(){
 void    asyncHTTPrequest::setDebug(bool debug){
     if(_debug || debug) {
         _debug = true;
+
         DEBUG_HTTP("setDebug(%s) version %s\r\n", debug ? "on" : "off", asyncHTTPrequest_h);
+
+        #ifdef DONT_COMPILE_DEBUG_LINES
+        if(debug){
+        DEBUG_IOTA_PORT.printf("Sourcecode doesn't contain debug lines.");
+        }
+        #endif
     }
 	_debug = debug;
 }
